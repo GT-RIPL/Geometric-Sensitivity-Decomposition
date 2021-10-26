@@ -1,7 +1,7 @@
 # Geometric Sensitivity Decomposition 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
 
-![Diagram of Contribution]()
+![Diagram of Contribution](https://github.com/GT-RIPL/Geometric-Sensitivity-Decomposition/blob/main/images/summary_diagram.png)
 
 1. This repo is the official implementation of [A Geometric Perspective towards Neural Calibration via Sensitivity Decomposition]() (*tian21gsd*)
 2. We **reimplememented** [Exploring Covariate and Concept Shift for Out-of-Distribution Detection]() (*tian21explore*) and include it in the code base as well.
@@ -113,5 +113,4 @@ data:
     - [vanilla wide ResNet]()
     - [GSD wide ResNet]()
     - [Geometric ODIN wide ResNet]()
-2. [Project page]()
    
