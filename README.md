@@ -92,8 +92,8 @@ data:
 |Vanilla| 96.25| 69.43| 0.0151|	0.1433|	0.1529 | 1.0885|
 |[Temperature Scaling](https://arxiv.org/abs/1706.04599)|96.02| 71.54 |	*0.0028*|	0.0995|	0.1352|	0.8699|
 |[Dirichlet Scaling](https://arxiv.org/abs/1910.12656) |95.93|	71.15|	0.0049|	0.1135|	**0.1305**|	0.9527|
-|GSD|96.23|	71.7|	0.0057|	**0.0439**|	0.1431|	**0.7921**|
-|Geometric ODIN| 95.92|70.18|**0.0016**|*0.0454*|**0.1309**|*0.8138*|
+|GSD (tian21gsd)|96.23|	71.7|	0.0057|	**0.0439**|	0.1431|	**0.7921**|
+|Geometric ODIN (tian21explore)| 95.92|70.18|**0.0016**|*0.0454*|**0.1309**|*0.8138*|
 
 2. Out-of-Distribution Detection Performance (AUROC) of models trained on *CIFAR10*
 
@@ -101,8 +101,8 @@ data:
 | :---------: | :------------: | :-----------: | :---------: |:---------: |
 |Vanilla|[MSP](https://arxiv.org/abs/1610.02136)| 88.33	| 71.49 | 91.88|
 |Temperature Scaling|[Energy](https://arxiv.org/abs/2010.03759)| 88.11 | 71.94| 92.88|
-|GSD|U| **92.68** |	77.68 |	**99.29**|
-|Geometric ODIN|U|**92.53**	| **78.77**	|**99.60**|
+|GSD (tian21gsd)|U| **92.68** |	77.68 |	**99.29**|
+|Geometric ODIN (tian21explore)|U|**92.53**	| **78.77**	|**99.60**|
 
 
 
