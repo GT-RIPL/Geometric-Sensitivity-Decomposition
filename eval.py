@@ -134,9 +134,10 @@ def eval(cfg, logdir):
     u_list = []
     energy_list = []
 
-    if 'degredation' in cfg['testing'] and cfg['testing']['degredation']['type'] is not None:
-        types = cfg['testing']['degredation']['type']
-        noise_levels = cfg['testing']['degredation']['value']
+    if cfg['testing']['dataset'] == 'cifar10c' or cfg['testing']['dataset'] == 'cifar100c':
+        types =  ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur', 'motion_blur', 'zoom_blur', 'snow',
+                       'frost', 'fog', 'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
+        noise_levels = [1,2,3,4,5]
         mode = 'test'
     else:
         types = [None]
@@ -156,6 +157,7 @@ def eval(cfg, logdir):
                 # Update validation config file for each condition
                 v_cfg = cfg
                 if noise_type is not None:
+                    v_cfg['testing']['degredation'] = {}
                     v_cfg['testing']['degredation']['type'] = noise_type
                     v_cfg['testing']['degredation']['value'] = level
                 v_loader = get_loader(v_cfg, mode, group=group)

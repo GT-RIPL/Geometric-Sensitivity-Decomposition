@@ -75,9 +75,9 @@ data:
 4. Out-of-Distribution (OOD) benchmark
     - OOD evaluation needs to run  `eval.py` two times to extract OOD scores from both the ID and OOD datasets.
     - Results will be saved under `./runs/test/{data_name}/{arch}/{calibration}/{test_dataset}_scores.csv`. For example, to evaluate OOD detection performance of a vanilla model (ID:*CIFAR10* vs. OOD:*CIFAR10C*), you need to run `eval.py` twice on *CIFAR10* and *CIFAR10C* as the testing dataset. Upon completion, you will see two files, `cifar10_scores.csv` and  `cifar10c_scores.csv` in the same folder.
-    - To calculate OOD detection performance, modify the `id_data_path` and `ood_data_path` in `utils/calculate_ood.py` to reference to the saved score csv files and run the following command. (Also specify a logdir)
+    - After the evaluation results are saved, to calculate OOD detection performance, run  `calculate_ood.py` and specify the conditions of the model: training set, testing set, model name and calibration method. The flags will help the function locate csv files saved in the previous step.
         ```
-        python calculate_ood.py
+        python utils/calculate_ood.py --train cifar10 --test cifar10c --model resnet_vanilla --calibration none
         ``` 
     - We use AUROC and TNR@TPR95 as evaluation metrics.
 
@@ -90,27 +90,25 @@ data:
 | :---------: | :------------: | :-----------: | :---------: |:---------: |:---------: |:---------: |
 ||CIFAR10|CIFAR10C|CIFAR10|CIFAR10C|CIFAR10|CIFAR10C|
 |Vanilla| 96.25| 69.43| 0.0151|	0.1433|	0.1529 | 1.0885|
-|Temperature Scaling|96.02| 71.54 |	*0.0028*|	0.0995|	0.1352|	0.8699|
-|Dirichilet Sacaling|95.93|	71.15|	0.0049|	0.1135|	**0.1305**|	0.9527|
+|[Temperature Scaling](https://arxiv.org/abs/1706.04599)|96.02| 71.54 |	*0.0028*|	0.0995|	0.1352|	0.8699|
+|[Dirichlet Scaling](https://arxiv.org/abs/1910.12656) Sacaling|95.93|	71.15|	0.0049|	0.1135|	**0.1305**|	0.9527|
 |GSD|96.23|	71.7|	0.0057|	**0.0439**|	0.1431|	**0.7921**|
 |Geometric ODIN| 95.92|70.18|**0.0016**|*0.0454*|**0.1309**|*0.8138*|
 
-2. Out-of-Distribution Detection Performance of models trained on *CIFAR10*
+2. Out-of-Distribution Detection Performance (AUROC) of models trained on *CIFAR10*
 
-||score function| CIFAR100| CIFAR10C | SVHN|
+|AUROC|score function| CIFAR100| CIFAR10C | SVHN|
 | :---------: | :------------: | :-----------: | :---------: |:---------: |
-|Vanilla|MSP|
-|Temperature Scaling|MSP|
-|Dirichilet Sacaling|MSP|
-|GSD|U|
-|Geometric ODIN|U|
+|Vanilla|[MSP](https://arxiv.org/abs/1610.02136)| 88.33	| 71.49 | 91.88|
+|Temperature Scaling|[Energy](https://arxiv.org/abs/2010.03759)| 88.11 | 71.94| 92.88|
+|GSD|U| **92.68** |	77.68 |	**99.29**|
+|Geometric ODIN|U|**92.53**	| **78.77**	|**99.60**|
 
 
 
 
 ## Additional Resources
 1. Pretrained models
-    - [vanilla wide ResNet]()
-    - [GSD wide ResNet]()
-    - [Geometric ODIN wide ResNet]()
-   
+    - [vanilla wide ResNet](https://drive.google.com/file/d/1sY5BoB3czDqWWwVlJV-fR5FG2p8qiwxK/view?usp=sharing)
+    - [GSD wide ResNet](https://drive.google.com/file/d/1nS84Db7BMouUqTzR4M2U3WcwWu0v5w2T/view?usp=sharing)
+    - [Geometric ODIN wide ResNet](https://drive.google.com/file/d/1ftOYTMuuaPnTjHfSEniOU612VUyD926m/view?usp=sharing)

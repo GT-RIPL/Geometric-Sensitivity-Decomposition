@@ -12,7 +12,7 @@ data:
     root: ./datasets/
     num_classes: 10
 testing: 
-    dataset: cifar10c # testing dataset
+    dataset: cifar10 # cifar10, cifar100, cifar100c, cifar10c, svhn testing dataset
     group: #[0,1,2,3,4,5,6,7,8,9] cifar100 groups. Leave blank to evaluate on all CIFAR100 
     calibration: alpha-beta #['temperature','dirichlet','matrix','alpha-beta','none']
     tune_epoch: 10
@@ -24,9 +24,5 @@ testing:
     loss: CrossEntropy 
     batch_size: 128
     n_workers: 12
-    degredation:
-        type: [gaussian_noise, shot_noise, impulse_noise, defocus_blur, glass_blur, motion_blur, zoom_blur, snow,
-                       frost, fog, brightness, contrast, elastic_transform, pixelate, jpeg_compression]
-        value: [1,2,3,4,5]
     exponential_map: 0.1 # leave blanck to not use exponential mapping
     resume: ./runs/cifar10/wide_resnet28_10/resnet_gsd/ckpt.best.pth.tar

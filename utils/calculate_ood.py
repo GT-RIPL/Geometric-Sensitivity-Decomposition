@@ -1,6 +1,8 @@
 import numpy as np
 from sklearn import metrics
 import pandas as pd
+import argparse
+import os
 
 def tnr_at_tpr95(ind_conf, ood_conf, tpr_threshold=0.95):
     sorted_ = np.sort(ind_conf)
@@ -27,10 +29,39 @@ def AUROC(ind_conf, ood_conf):
     return  metrics.auc(fpr, tpr)
 
 if __name__ == "__main__":
-    logdir = './'
-    id_data_path = ''
-    ood_data_path = ''
+    parser = argparse.ArgumentParser(description="config")
+    parser.add_argument(
+        "--train",
+        type=str,
+        default="cifar10",
+        help="specify a training dataset used",
+    )
 
+    parser.add_argument(
+        "--test",
+        type=str,
+        default="cifar10c",
+        help="specify a testing dataset used",
+    )
+    parser.add_argument(
+        "--model",
+        type=str,
+        default="resnet_vanilla",
+        help="specify a model",
+    )
+    parser.add_argument(
+        "--calibration",
+        type=str,
+        default="none",
+        help="specify a calibration used",
+    )
+
+    
+    args = parser.parse_args()
+    logdir = os.path.join('./runs/test/',args.train, 'wide_resnet28_10', args.model)
+    ood_data_path = os.path.join(logdir, args.calibration, args.test+'_scores.csv')
+    id_data_path = os.path.join(logdir, args.calibration, args.train+'_scores.csv')
+    
     id_dataset = np.genfromtxt(id_data_path, delimiter=',',skip_header=1)
     ood_dataset = np.genfromtxt(ood_data_path, delimiter=',',skip_header=1)
 
@@ -47,6 +78,6 @@ if __name__ == "__main__":
         tpr95_dict[metric_list[i]].append(tpr95)
     
     df = pd.DataFrame(auroc_dict).T
-    df.to_csv(logdir + '_auroc_results.csv')
+    df.to_csv(os.path.join(logdir, args.calibration, args.test+'_auroc_results.csv'))
     df = pd.DataFrame(tpr95_dict).T
-    df.to_csv(logdir + '_tpr95_results.csv')
+    df.to_csv(os.path.join(logdir, args.calibration, args.test+'_tpr95_results.csv'))
