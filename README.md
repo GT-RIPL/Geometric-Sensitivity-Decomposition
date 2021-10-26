@@ -27,11 +27,11 @@ data:
         python train.py --config ./configs/train/resnet_vanilla.yaml   
         ```
 
-    - To train the GSD model proposed in [A Geometric Perspective towards Neural Calibration via Sensitivity Decomposition]().
+    - To train the GSD model proposed in [tian21gsd]().
         ```
         python train.py --config ./configs/train/resnet_gsd.yaml   
         ```
-    - To train the Geometric ODIN model proposed in [Exploring Covariate and Concept Shift for Out-of-Distribution Detection]()
+    - To train the Geometric ODIN model proposed in [tian21exploring]().
         ```
         python train.py --config ./configs/train/resnet_geo_odin.yaml   
         ```
@@ -66,11 +66,11 @@ data:
 3. Calibration benchmark
     - Results will be saved under `./runs/test/{data_name}/{arch}/{calibration}/{test_dataset}_calibration.txt`.
     - We use Expected Calibration Error (ECE), Negative Log Likelihood and Brier score for calibration evaluation. 
-    - We recommend use a 5-fold evalution for in-distribution (ID) calibration benchmark because `CIFAR10/100` does not have a val/test split. Note that  `evalx.py` does *not* save OOD scores. 
+    - We recommend using a 5-fold evalution for in-distribution (ID) calibration benchmark because `CIFAR10/100` does not have a val/test split. Note that  `evalx.py` does *not* save OOD scores. 
         ```
         python evalx.py --config ./configs/train/resnet_{model}.yaml 
         ```
-    - (Optional) To use the proposed exponential mapping for calibration, set the attribute `exponential_map` to 0.1.
+    - (Optional) To use the proposed exponential mapping ([tian21gsd]()) for calibration, set the attribute `exponential_map` to 0.1.
     
 4. Out-of-Distribution (OOD) benchmark
     - OOD evaluation needs to run  `eval.py` two times to extract OOD scores from both the ID and OOD datasets.
