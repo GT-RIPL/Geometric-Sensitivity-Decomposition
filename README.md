@@ -45,7 +45,7 @@ data:
 |CIFAR10|	CIFAR10C|	CIFAR100|	SVHN|	CIFAR100 Splits|	CIFAR10|	CIFAR10C|
 |CIFAR100|	CIFAR100C|	CIFAR10|	SVHN|		               |CIFAR100|	CIFAR100C|
 
-2. The `eval.py` file *optionally* calibrates a model. It **1)** evaluates calibration perforamnce and **2)** saves several scores for OOD detection evaluation *later*.
+2. The `eval.py` file *optionally* calibrates a model. It **1)** evaluates calibration performance and **2)** saves several scores for OOD detection evaluation *later*.
     - Run the following commend to evaluate on a test set. 
         ```
         python eval.py --config ./configs/eval/resnet_{model}.yaml 
