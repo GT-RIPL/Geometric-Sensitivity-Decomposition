@@ -51,30 +51,29 @@ def eval(cfg, logdir):
     NLL = []
     BRIER = []
     ACC = []
-    for held_out in [1,2,3,4,5]:
-        #================================ AutoTune NLL ==========================================
+    
+    #================================ AutoTune NLL ==========================================
+    # Calculate the exponential mapping
+    if cfg['testing']['exponential_map']:
+        print('Calculating mean and std')
+        v_loader = get_loader(cfg,'val')
+        valloader = data.DataLoader(v_loader,
+            batch_size=cfg["testing"]["batch_size"],num_workers=cfg["testing"]["n_workers"])
+        with torch.no_grad():
+            norms = None
+            for image, _ in valloader:
+                x_norms = model(image.to(device), is_feature_norm = True)
+                if norms == None:
+                    norms = x_norms
+                else:
+                    norms = torch.cat((x_norms, norms), dim=0)
+            x_mu  = torch.mean(norms)
+            x_std = torch.std(norms)
+            c = -np.log(cfg['testing']['exponential_map'])/(x_mu-x_std).item()
+    else:
+        c = None
         
-        
-        # Calculate the exponential mapping
-        if cfg['testing']['exponential_map']:
-            print('Calculating mean and std')
-            v_loader = get_loader(cfg,'val')
-            valloader = data.DataLoader(v_loader,
-                batch_size=cfg["testing"]["batch_size"],num_workers=cfg["testing"]["n_workers"])
-            with torch.no_grad():
-                norms = None
-                for image, _ in valloader:
-                    x_norms = model(image.to(device), is_feature_norm = True)
-                    if norms == None:
-                        norms = x_norms
-                    else:
-                        norms = torch.cat((x_norms, norms), dim=0)
-                x_mu  = torch.mean(norms)
-                x_std = torch.std(norms)
-                c = -np.log(cfg['testing']['exponential_map'])/(x_mu-x_std).item()
-        else:
-            c = None
-        
+    for held_out in [1,2,3,4,5]:    
         # Tuning calibration parameters on the validation set
         if cfg['testing']['calibration'] != 'none': 
             print('============================== start auto-tuning ==============================================')

@@ -4,7 +4,7 @@ model:
     decomp: unconditioned # ['unconditioned', 'conditioned', 'none']
     bias: False 
     size: 32
-    beta:
+    beta: 
     alpha: 1
     pretrained: False 
 data: 
@@ -12,19 +12,21 @@ data:
     root: ./datasets/
     num_classes: 10
 testing: 
-    dataset: cifar10 # testing dataset
+    dataset: cifar10c # testing dataset
     group: #[0,1,2,3,4,5,6,7,8,9] cifar100 groups. Leave blank to evaluate on all CIFAR100 
-    calibration: none #['temperature','dirichlet','matrix','alpha-beta','none']
-    tune_epoch: 20
+    calibration: alpha-beta #['temperature','dirichlet','matrix','alpha-beta','none']
+    tune_epoch: 10
     optimizer: 
         name: sgd
         lr:  0.1 # 0.01 for dirichlet calibration
         weight_decay: 5.0e-4
         momentum: 0.9 
     loss: CrossEntropy 
+    batch_size: 128
+    n_workers: 12
     degredation:
-        type: #[gaussian_noise, shot_noise, impulse_noise, defocus_blur, glass_blur, motion_blur, zoom_blur, snow,
-               #        frost, fog, brightness, contrast, elastic_transform, pixelate, jpeg_compression]
-        value: #[1,2,3,4,5]
-    exponential_map: # leave blanck to not use exponential mapping
-    resume: 
+        type: [gaussian_noise, shot_noise, impulse_noise, defocus_blur, glass_blur, motion_blur, zoom_blur, snow,
+                       frost, fog, brightness, contrast, elastic_transform, pixelate, jpeg_compression]
+        value: [1,2,3,4,5]
+    exponential_map: 0.1 # leave blanck to not use exponential mapping
+    resume: ./runs/cifar10/wide_resnet28_10/resnet_gsd/ckpt.best.pth.tar

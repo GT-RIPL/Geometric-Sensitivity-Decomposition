@@ -89,11 +89,11 @@ data:
 || accuracy|| ECE || Nll||
 | :---------: | :------------: | :-----------: | :---------: |:---------: |:---------: |:---------: |
 ||CIFAR10|CIFAR10C|CIFAR10|CIFAR10C|CIFAR10|CIFAR10C|
-|Vanilla|
-|Temperature Scaling|
-|Dirichilet Sacaling|
-|GSD|
-|Geometric ODIN|
+|Vanilla| 96.25| 69.43| 0.0151|	0.1433|	0.1529 | 1.0885|
+|Temperature Scaling|96.02| 71.54 |	*0.0028*|	0.0995|	0.1352|	0.8699|
+|Dirichilet Sacaling|95.93|	71.15|	0.0049|	0.1135|	**0.1305**|	0.9527|
+|GSD|96.23|	71.7|	0.0057|	**0.0439**|	0.1431|	**0.7921**|
+|Geometric ODIN| 95.92|70.18|**0.0016**|*0.0454*|**0.1309**|*0.8138*|
 
 2. Out-of-Distribution Detection Performance of models trained on *CIFAR10*
 
