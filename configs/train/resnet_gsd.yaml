@@ -1,0 +1,27 @@
+id: resnet_gsd 
+model:  
+    arch: wide_resnet28_10
+    decomp: unconditioned # ['unconditioned', 'conditioned', 'none']
+    bias: False 
+    size: 32
+    beta:
+    alpha: 1
+    pretrained: False 
+data: 
+    name: cifar10 
+    root: ./datasets/
+    num_classes: 10
+training: 
+    seed:
+    train_epoch: 200 
+    batch_size: 128  
+    print_interval: 100
+    n_workers: 12
+    scheduler: wide # [wide,cos] Set to wide for 60, 120, 160 epoch step, cos for cos
+    optimizer: 
+        name: sgd
+        lr:  0.1 
+        weight_decay: 5.0e-4
+        momentum: 0.9 
+    loss: CrossEntropy 
+    resume: 
