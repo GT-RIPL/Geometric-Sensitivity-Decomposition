@@ -5,6 +5,7 @@
 
 1. This repo is the official implementation of [A Geometric Perspective towards Neural Calibration via Sensitivity Decomposition]() (*tian21gsd*)
 2. We **reimplememented** [Exploring Covariate and Concept Shift for Out-of-Distribution Detection]() (*tian21explore*) and include it in the code base as well.
+3. For a brief introduction to the two papers, please visit the [project page](https://sites.google.com/view/geometric-decomposition/geometric-sensitivity-decomposition)
 
 
 ## Create conda environment
