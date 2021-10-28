@@ -3,9 +3,9 @@
 
 ![Diagram of Contribution](https://github.com/GT-RIPL/Geometric-Sensitivity-Decomposition/blob/main/images/summary_diagram.png)
 
-1. This repo is the official implementation of [A Geometric Perspective towards Neural Calibration via Sensitivity Decomposition]() (*tian21gsd*)
-2. We **reimplememented** [Exploring Covariate and Concept Shift for Out-of-Distribution Detection]() (*tian21explore*) and include it in the code base as well.
-3. For a brief introduction to the two papers, please visit the [project page](https://sites.google.com/view/geometric-decomposition/geometric-sensitivity-decomposition)
+1. This repo is the official implementation of [A Geometric Perspective towards Neural Calibration via Sensitivity Decomposition]() (*tian21gsd*). The pape is accpted at [NeurIPS 2021](https://nips.cc/Conferences/2021/ScheduleMultitrack?event=26546). as a spotlight paper.
+2. We **reimplememented** [Exploring Covariate and Concept Shift for Out-of-Distribution Detection]() (*tian21explore*) and include it in the code base as well. The paper is accepted at [NeurIPS 2021 workshop on Distribution Shift](https://sites.google.com/view/distshift2021). 
+3. For a brief introduction to these two papers, please visit the [project page](https://sites.google.com/view/geometric-decomposition/home).
 
 
 ## Create conda environment
