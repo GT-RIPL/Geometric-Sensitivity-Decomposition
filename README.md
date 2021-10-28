@@ -100,7 +100,7 @@ data:
 |AUROC|score function| CIFAR100| CIFAR10C | SVHN|
 | :---------: | :------------: | :-----------: | :---------: |:---------: |
 |Vanilla|[MSP](https://arxiv.org/abs/1610.02136)| 88.33	| 71.49 | 91.88|
-|Temperature Scaling|[Energy](https://arxiv.org/abs/2010.03759)| 88.11 | 71.94| 92.88|
+||[Energy](https://arxiv.org/abs/2010.03759)| 88.11 | 71.94| 92.88|
 |GSD (tian21gsd)|U| **92.68** |	77.68 |	**99.29**|
 |Geometric ODIN (tian21explore)|U|**92.53**	| **78.77**	|**99.60**|
 
